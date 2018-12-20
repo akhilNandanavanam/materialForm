@@ -1,0 +1,51 @@
+<mat-card class="cardLayout" matRipple [matRippleTrigger]="trigger">
+
+<mat-form-field>
+        <input type="textbox" matInput [formControl]='name' placeholder="Name">
+        <mat-error *ngIf="name.hasError('required')">
+                Please enter a valid Name
+        </mat-error>
+</mat-form-field><br>
+<mat-form-field>
+        <input type="textbox" matInput [formControl]='mail' placeholder="E-Mail">
+        <mat-error *ngIf="mail.hasError('required')">
+                Please enter a email address
+        </mat-error>
+        <mat-error *ngIf="mail.hasError('email')">
+                Please enter a valid email address
+        </mat-error>
+</mat-form-field><br>
+<mat-form-field>
+        <input type="password" aria-label="Button that displays a tooltip when focused or hovered over"
+         matTooltip="Password should have UpperCase, LowerCase, Number/SpecialChar and min 8 Chars" matInput [formControl]='password' placeholder="Password">
+        <mat-error *ngIf="password.hasError('required')">
+                Please enter a Password
+        </mat-error>
+        <mat-error *ngIf="password.hasError('password')">
+                Please enter a valid Password
+        </mat-error>
+</mat-form-field><br>
+
+                <mat-radio-group [formControl]="gender">
+                                <mat-radio-button  value="Male" style="padding:0.5em">Male</mat-radio-button>
+                                <mat-radio-button value="Female">Female</mat-radio-button>
+                </mat-radio-group>  
+                <br>
+                
+<mat-form-field>
+  <mat-select [(value)]="selected" placeholder="Country" [formControl]="state">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let country of countries"[value]="country">{{country}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<br>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" placeholder="Date of Birth" [formControl]="dob">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<div #trigger>
+<button mat-button type="submit" color="primary"  (click)="openDialog()">Submit</button></div>
+</mat-card>
